@@ -1,0 +1,21 @@
+//cool code 
+#include <iostream>
+using namespace std;
+int main () {
+    int money;
+    cout<< "Money you can give for farewell \n";
+    cin>> money;
+    if ((money>0) && (money<200)) {
+        cout<<"Gareeb chomu ghar baith, aaya bda party krne.\n";
+    }
+    else if ((money>200)&&(money<500)) {
+        cout<<"aaja par sab nahi milega.\n";
+    }
+    else if (money==0){
+        cout<<"jaake pogo dekh.\n";
+    }
+    else {
+        cout<< "aaja bhai.\n";
+    }
+    return 0;
+}

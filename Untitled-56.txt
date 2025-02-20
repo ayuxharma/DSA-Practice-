@@ -1,0 +1,131 @@
+//L51
+
+
+node* reverse(node*head){
+    node* curr = head ;
+    node* prev = NULL ;
+    node* next = NULL ;
+
+    while(curr != NULL){
+        next = curr->next ;
+        curr->next = prev ;
+        prev = curr ;
+        curr = next ;
+    }
+    return prev ;
+}
+
+void insertattail (node* &head , node* &tail , int val){
+
+    node* temp = new node(val) ;
+    if (head == NULL){
+        head = temp ;
+        tail = temp ;
+    }
+    else {
+        tail->next = temp ;
+        tail = temp ;
+    }
+}
+
+
+
+node* sum (node* first , node* second){
+
+    int carry = 0 ;
+
+    node* anshead = NULL ;
+    node* anstail = NULL ;
+    
+    while(first !=NULL  && second != NULL){
+
+        int sum = carry + (first->data) + (second->data) ;
+
+        int digit = sum%10 ;
+
+        // create node and add answer LL
+        insertattail(anshead , anstail , digit) ;
+
+        carry = sum/10 ;
+        first = first->next ;
+        second = second->next ;
+    }
+
+    while(first != NULL){
+        int sum = carry + (first->data) ;
+        int digit = sum%10 ;
+        insertattail(anshead , anstail , digit) ;
+        carry = sum/10 ;
+        first = first->next ;
+    }
+
+
+    while(second != NULL){
+        int sum = carry + (second->data) ;
+        int digit = sum%10 ;
+        insertattail(anshead , anstail , digit) ;
+        carry = sum/10 ;
+        second = second->next ;
+    }
+
+
+    while(carry != 0){
+        int sum = carry ;
+        int digit = sum%10 ;
+        insertattail(anshead , anstail , digit) ;
+        carry = sum/10 ;
+    }
+    return anshead ;
+}
+
+
+node* addtwolists (node* first , node* second){
+
+    //s1: reverse ip LL
+    first = reverse(first) ;
+    second = reverse(second) ;
+
+    //s2. add 2 LL
+    node* ans = add(first , second) ;
+
+    //s3. reverse ans list
+    ans = reverse(ans) ;
+
+    return ans ;
+}
+
+
+
+
+//BETTER WAY
+
+while (first != NULL  || second != NULL  || carry != NULL){
+
+    int val1 ;
+    if (first!=NULL){
+        val1 = first->data ;
+    }
+
+    int val2 ;
+    if (second != NULL){
+        val2 = second->data ;
+    }
+
+    int sum = carry + val1 + val2 ;
+
+    int digit = sum%10 ;
+    insertattail(anshead , anstail , digit) ;
+    carry = sum/10 ;
+
+    if (first!=NULL){
+        first = first->next ;
+    }
+
+    if (second!=NULL){
+        second = second->next ;
+    }
+}
+
+
+// TC = O(M+N)
+// SC = O(N)

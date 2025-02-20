@@ -1,0 +1,48 @@
+//L8 continue
+#include <iostream>
+using namespace std ;
+
+/* void printCounting (int n) {
+    for (int i=1; i<=n; i++) {
+        cout << i << " " ;
+    }
+    cout << endl ;
+}
+int main () {
+    int n ;
+    cin >> n ;
+
+    printCounting(n) ;
+
+    return 0 ;
+    }
+    */
+
+   // Prime or not 
+
+   bool isPrime (int n) {
+    
+    for (int i=2; i<=n ; i++) {
+        // divide hogya hai (not prime )
+        if (n%i==0) {
+            return 0;
+        }
+        else {
+         return 1 ;
+        }
+    }
+   }
+
+    int main () {
+        int n;
+        cin >> n ;
+        if(isPrime(n)) {
+            cout << "is a prime number " << endl;
+        }
+        else {
+            cout << "not a prime number " << endl;
+        }
+
+    }
+
+   

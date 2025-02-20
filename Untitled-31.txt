@@ -1,0 +1,120 @@
+//Strings
+
+// #include <iostream>
+// #include <algorithm>
+// #include <string>
+
+// using namespace std ;
+
+// int main () {
+   
+// //    string s1 = "fam" ;
+// //    string s2 = "ily" ;
+
+//    // string str (5, 'n') ;
+//    // getline (cin , str) ;
+//    // cout str ;
+ 
+//   // s1.append(s2) ;
+//   // cout << s1 << endl;
+
+//   // cout << s1 + s2 << endl;
+
+// //    s1 = s1 + s2 ;
+// //    cout << s1 ;
+
+//     // cout << s1[1] << endl; 
+
+//     // string s1 = "abc" ;
+//     // string s2 = "xyz" ;
+//     // cout << s1.compare(s2) << endl; // yeh kind of s2-s1 kr rha h , (xyz-abc)
+//     // if ans comes 0 , then both are same 
+//     // if ans comes positive number , then s2 > s1
+//     // if ans comes negative number , then s2 < s1
+
+
+//     // string s1 = "ayusharma" ;
+
+//     // s1.erase(3,4) ; // it means index 3 se delete krna start krna h aur 4 characters delete krne h 
+//     // cout << s1 << endl;
+
+
+//     // string s1 = "ayushsharma" ;
+//     // cout << s1.find("arm") << endl;
+
+
+//     // string s1 = "ayusharma" ;
+
+//     // cout << s1.insert(2,"lol") ; // means 2 index pr lol add krna h 
+//     // cout << s1 << endl;
+
+//     // cout << s1.length() << endl;
+
+
+//     // AGAR STRING KA KOI PART , MTLB SUBSTRING CHAHIYE
+//     // string s1 = "ayushparnika" ;
+
+//     // string s = s1.substr(6,4) ; // means index 6 se aage k 4 characters chahiye
+//     // cout << s << endl;
+
+//     string s1 = "ayush" ;
+     
+//     sort (s1.begin() , s1.end()) ;  // alphabetically arrange kr dega
+
+//     cout << s1 << endl;
+
+
+//    return 0 ;
+// }
+
+// captial to small ka STL and vice versa
+// #include <iostream>
+// #include <string>
+
+// using namespace std ;
+
+// int main() {
+
+//     string str = "ayush" ;
+
+    
+//     for (int i=0 ; i<str.length() ; i++){
+//         char ch = str[i] ;
+//         if (str[i]>='a' && str[i]<='z')
+//         ch = ch - 'a' + 'A';
+//         cout << ch ;
+//     }
+// }
+
+//now using STL
+#include <iostream>
+#include <algorithm>
+#include <string>
+
+
+using namespace std ;
+
+int main() {
+
+    string s = "ayush" ;
+    
+    transform(s.begin() , s.end() , s.end() , ::toupper) ;
+    cout << s ;
+
+    transform(s.begin() , s.end() , s.end() , ::toupper) ;
+    cout << s ;
+
+    
+
+
+    string s = "12435" ;
+    
+        sort(s.begin() , s.end() , greater<int>()) ;
+        cout << s ;
+
+cout << endl;
+
+        string s1 = "abdcegf" ;
+        sort(s1.begin() , s1.end() , greater<char>()) ;
+        cout << s1 ;
+} 

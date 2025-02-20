@@ -1,0 +1,65 @@
+//L31
+//(recursion)
+
+
+//factorial
+#include <iostream>
+using namespace std ;
+
+int factorial (int n) {
+    
+    //base case
+    if (n==0) 
+    return 1;
+
+   return n * factorial(n-1) ;
+
+} 
+
+int main () {
+
+    int n;
+    cin >> n;
+
+    int ans = factorial(n) ;
+
+    cout << ans << endl;
+
+    return 0;
+}
+
+
+
+//2^n 
+#include <iostream>
+using namespace std ;
+
+int power (int n) {
+
+    //base case
+    if (n==0)
+    return 1 ;
+
+    //recursive relation
+    int smallerProblem = power(n-1) ;
+    int biggerProblem = 2 * smallerProblem ;
+
+    return biggerProblem ;
+}
+
+int main () {
+
+    int n;
+    cin >> n;
+
+    int ans = power(n);
+    
+    cout << ans << endl;
+
+    return 0;
+
+}
+
+// counting question (kiya pr delete hogya)
+ip = 5 
+op = 5 4 3 2 1 

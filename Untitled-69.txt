@@ -1,0 +1,23 @@
+// revision
+
+#include <iostream>
+using namespace std ;
+
+void reverse (int arr[] , int size){
+    int start = 0 ;
+    int end = (size-1) ;
+
+    while (start<=end){
+        swap(arr[start],arr[end]) ;
+        start++ ;
+        end-- ;
+    }
+}
+
+int main() {
+
+    int ayush[5] = {11,21,31,41,51} ;
+    int ans = reverse(ayush,5) ;
+    cout << "Reversed array is " << ans ;
+
+}

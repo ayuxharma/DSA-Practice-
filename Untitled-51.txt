@@ -1,0 +1,67 @@
+//L46
+
+//Q1. REVERSE LL IN   k groups
+
+//(TC = O(N)   ,   SC = O(N))
+
+node* kReverse (node* head , int k) {
+
+    //base call
+    if (head==NULL){
+        return NULL ;
+    }
+
+    //step1: reverse first k nodes
+    node* next = NULL ;
+    node* curr = head ;
+    node* prev = NULL ;
+    int count = 0 ;
+
+    while(curr != NULL  && count < k) {
+
+        next = curr->next ; //store kiya so that lose n ho jae data
+        curr->next = prev ;
+        prev = curr ;
+        curr = next ;
+        count++ ;
+    }
+
+    //step2 : recursion dekh lega baaki
+    if(next != NULL){
+        head->next = kReverse(next , k) ;
+    }
+
+    //step3 : return head of reversed list
+    return prev ;
+}
+
+
+//Q2. CIRCULAR LL OR NOT
+
+bool isCircularList (node* head) {
+
+    if (head == NULL){
+        return true ;
+    }
+
+    node* temp = head->next ;
+    while (temp != NULL && temp != head) {
+        temp = temp->next ;
+    }
+
+    if (temp == head) {
+        return true ;
+    }
+
+    return false ;
+
+}
+
+//niche circular list ka code bhi aaega
+
+if(isCircularList(tail)){
+    cout << "LL is circular in nature " << endl;
+}
+else {
+    cout << "LL is not circular in nature " << endl;
+}

@@ -1,0 +1,369 @@
+//L22
+
+//Q1. Length of the string
+/* #include <iostream>
+using namespace std ;
+
+int getLength (char name[]) {
+    int count = 0;
+    for (int i=0 ; name[i] != '\0' ; i++) {
+        count ++ ;
+    }
+    return count ;
+}
+
+int main () {
+    
+    char name[20] ;
+    cout << "Enter your name " << endl;
+    cin >> name;
+    name[2] = '\0' ;
+
+    cout << "Your name is " << name << endl;
+
+    cout << "Length " << getLength(name) << endl;
+
+
+    return 0;
+} */
+
+
+//Q2. REVERSE A STRING 
+
+/* #include <iostream>
+using namespace std ;
+
+void reverse (char name[] , int n) {
+    int s = 0;
+    int e = n-1;
+
+    while (s<e) {
+        swap(name[s] , name[e]);
+        s++ ;
+        e-- ;
+    }
+}
+
+int getLength (char name[]) {
+    int count = 0;
+    for (int i=0 ; name[i] != '\0' ; i++) {
+        count ++ ;
+    }
+    return count ;
+}
+
+int main () {
+
+int len = getLength(name) ;   
+cout << "Length " << len << endl; ;
+cout << "After reverse " << reverse (name , len) ;
+
+return 0;
+} */
+
+
+//Q3. CHECK PLAINDROME
+
+/*
+#include <iostream>
+using namespace std;
+
+
+char toLowerCase (char ch) {
+    if ( (ch>='a' && ch<='z')  ||  (ch>='0' && ch<='9') ) {
+        return ch ;
+    }
+    else {
+        char temp = ch - 'A' + 'a' ;
+        return temp;
+    }
+}
+
+
+bool checkPalindrome (char a[] , int n) {
+    int s =0;
+    int e = n-1;
+
+    while (s<=e) {
+        if (a[s] != a[e]) {
+            return 0;
+        }
+        else {
+            s++ ;
+            e-- ;
+        }
+    }
+    return 1 ;
+}
+
+cout << "Palindrome or not " << checkPalindrome(name) << endl;
+cout << "Character is " << toLowerCase('b') << endl;
+cout << "Character is " << toLowerCase('C') << endl; */
+
+
+// Q. VALID PALINDROME 
+
+/*
+bool Valid (char ch) {
+    if ( (ch>='a' && ch<='z')  ||  (ch>='A' && ch<='Z')  ||  (ch>='0' && ch<='9') ) {
+        return 1;
+    }
+    return 0;
+}
+
+bool isPalindrome (string s) {
+// remove faltu character 
+int i=0;
+string temp = " " ;
+
+for (int j=0 ; j<s.length() ; j++) {
+
+    if (Valid(s[j])) {
+        temp.push_back (s[j]) ;
+    }
+}
+}
+
+
+//lower case main krdo sabko
+char toLowerCase (char ch) {
+    if ( (ch>='a' && ch<='z')  ||  (ch>='0' && ch<='9') ) {
+        return ch ;
+    }
+    else {
+        char temp = ch - 'A' + 'a' ;
+        return temp;
+    }
+}
+
+for (int j=0 ; j<temp.length() ; j++) {
+    temp[j] = toLowerCase(temp[j]) ;
+}
+
+// check palindrome
+bool checkPalindrome (string a) {
+    int s =0;
+    int e = a.length()-1;
+
+    while (s<=e) {
+        if (a[s] != a[e]) {
+            return 0;
+        }
+        else {
+            s++ ;
+            e-- ;
+        }
+    }
+    return 1 ;
+}
+
+// check palindrome
+return checkPalindrome(temp);
+*/
+
+
+//Q. MAXIMUM OCCURING CHARACTER
+
+/*
+#include <iostream>
+using namespace std ;
+
+char getMaxOccCharacter (string s) {
+
+    int arr[26] = {0} ;
+
+// create an array of count of characters
+    for (int i=0 ; i<s.length() ; i++) {
+        char ch = s[i] ;
+        //lower case
+        int number = 0 ;
+        number = ch - 'a' ;
+        arr[number] ++ ;
+    }
+
+    //find max occ character
+    int maxi = -1 , ans = 0 ;
+    for (int i=0 ; i<26 ; i++) {
+       if (maxi < arr[i]) {
+        ans = i ;
+        maxi = arr[i] ;
+       }
+    }
+
+    char finalAns = 'a' + ans ;
+    return finalAns ;
+}
+
+int main () {
+
+    string s ;
+    cin >> s ;
+
+    cout << getMaxOccCharacter(s) << endl;
+
+    return 0;
+}
+*/
+
+
+// another easier code for max occ character 
+#include <iostream>
+#include <algorithm>
+#include <string>
+
+using namespace std ;
+
+int main() {
+
+    string s = "ayushharmammm" ;
+
+    int arr[26] = {0} ;
+
+    for (int i=0 ; i<s.length() ; i++){
+        
+        char ch = s[i] ;
+        arr [ch-'a'] ++ ;
+    }
+
+    char ans ;
+    int max = 0 ;
+
+    for (int i=0 ; i<26 ; i++){
+        if (arr[i] > max){
+            max = arr[i] ;
+            ans = i + 'a' ;
+        }
+    }
+
+    cout << "max occuring character is " << ans << endl;
+    
+}
+
+
+
+
+//Q. '@40' vala question 
+
+string replaceSpaces (string & str) {
+    string temp = " " ;
+
+    for (int i=0 ; i<str.length() ; i++) {
+        if (str[i] == ' ') {
+            temp.push_back('@') ;
+            temp.push_back('4') ;
+            temp.push_back('0') ;
+        }
+        else {
+            temp.push_back(str[i]) ;
+        }
+    }
+    return temp ;
+}
+
+
+
+//Q. REMOVE ALL OCCURENCES OF A SUB-STRING
+
+string removeOccurences(string s , string part) {
+
+    while (s.length() != 0  &&  s.find(part) < s.length()) {
+        s.erase(s.find(part) , part.length()) ;
+    }
+    return s;
+}
+
+
+//Q. PERMUTATION IN STRING 
+
+bool checkEqual (int a[26] , int b[26]) {
+    
+    for (int i=0 ; i<26 ; i++) {
+        if(a[i] = b[i]) {
+            return 1 ;
+        }
+        else {
+            return 0;
+        }
+    }
+}
+
+bool checkInclusion (string s1 , string s2) {
+
+    //character count array
+    int count1 [26] = 0 ;
+
+    for (int i=0 ; i<s1.length() ; i++) {
+        int index = s1[i] - 'a' ;
+        count1 [index] ++ ;
+    }
+}
+
+//traverse s2 string in window of size s1 length and compare
+int i=0 ;
+int windowSize = s1.length() ;
+int count2 [26] = {0} ;
+
+//running for first window
+while (i<windowSize && i<s2.length()) {
+    int index = s2[i] - 'a' ;
+    count2 [index] ++ ;
+    i++ ;
+}
+
+if (checkEqual(count1 , count2)) 
+return 1 ;
+
+//aage window process karo
+while (i<s2.length()) {
+    char newChar = s2[i] ;
+    int index = newChar - 'a' ;
+    count2 [index] ++ ;
+
+    char oldChar = s2[i-windowSize] ;
+    index = oldChar - 'a' ;
+    count2 [index] ;
+
+    i++ ;
+
+    if (checkEqual(count1 , count2)) 
+    return 1 ;
+}
+return 0;
+
+
+
+
+
+//Q. STRING COMPRESSION 
+int compression(vector<char>& chars) {
+    int i=0 ;
+    int ansIndex=0;
+    int n = chars.size()
+
+    while (i<n) {
+
+        int j = i+1 ;
+        while (j<n && chars[i]==chars[j]) {
+            j++ ;
+        }
+        // yahan kab aaoge
+        // ya toh vector pura traversre kr diya
+        // ya toh new / diffrent character encounter kia
+
+        // oldChar store krlo
+        chars[ansIndex++] = chars[i] ;
+
+        int count = j-1 ;
+
+        if (count > 1) {
+            //converting counting into single digit and saving
+            string cnt = to_string(count) ;
+            for (char ch:cnt) {
+                chars[ansIndex++] = ch ;
+            }
+        }
+        //moving to new character
+        i=j ;
+    }
+    return ansIndex ;
+}

@@ -1,0 +1,36 @@
+//L25
+//(POINTERS)
+
+#include <iostream>
+using namespace std ;
+
+int main () {
+
+    int num = 5 ;
+    cout << num << endl;
+
+
+    // address operator is &
+    cout << "Adderss of num is " << &num << endl;
+
+    //int *ptr = &num ;
+    //cout << "Value is " << *ptr << endl;
+
+    // *ptr is value
+    // ptr is address
+
+    //cout << "Size of pointer is " << sizeof(ptr) ;
+
+
+    // IMPORTANT CONCEPT
+    
+    int i=3 ;
+    int *t = &i ;
+    cout << "ANSWER " << (*t)++ << endl;
+     *t = *t + 1 ; // se value ek increase ho jaegi
+     cout << (*t) << endl;
+     t = t + 1 ; //se agle integer pr chala jaata h
+     cout << t << endl;
+
+    return 0;
+}

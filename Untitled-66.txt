@@ -1,0 +1,205 @@
+//L61
+
+
+//Q1. Reverse Queue
+queue <int> rev(queue<int> q){
+
+    stack <int> s ;
+
+    while(q.empty()){
+        int element = q.front() ;
+        q.pop() ;
+        s.push(element) ;
+    }
+
+    while (s.empty()){
+        int element = s.top() ;
+        s.pop() ;
+        q.push(element) ;
+    }
+}
+
+
+
+//Q2. First negative number in every window of size k
+vector <long long> printfirstnegativeinteger(long long int A , long long int N , long long int K){
+
+    deque <long long int> d ;
+    vector <long long> ans ;
+
+    //process first window of k size
+    for (int i=0 ; i<K ; i++){
+        if(A[i] < 0){
+            dq.push_back(i) ;
+        }
+    }
+
+    //store answer of first k size window
+    if(dq.size() > 0){
+        ans.push_back(A[dq.front()]);
+    }
+    else {
+        ans.push_back(0) ;
+    }
+
+    //process all remaining windows
+    for (int i=K ; i<N ; i++){
+        //removal
+        if (!dq.empty()  &&  i - dq.front() >= K){
+            dq.pop_front() ;
+        }
+
+        //addition
+        if (A[i] < 0 ){
+            dq.push_back(i) ;
+        }
+
+        //ans store
+        if(dq.size() > 0){
+        ans.push_back(A[dq.front()]);
+    }
+    else {
+        ans.push_back(0) ;
+    }
+
+    }
+
+    return ans ;
+}
+
+
+
+
+//Q3. Reverse first K elements of queue
+queue <int> modifyqueue (queue<int> q , int k){
+    // s1: pop first k elements from queue and put into stack
+    stack<int> s ;
+
+    for (int i=0 ; i<k ; i++){
+        int val = q.front() ;
+        q.pop() ;
+        s.push(val) ;
+    }
+
+    //s2: fetch from stack and push into queue
+    while(!s.empty()){
+        int val = s.top() ;
+        s.pop() ;
+        q.push(val) ;
+    }
+
+    //s3: fetch first (n-k) elemets from queue and push back
+    int t = q.size()-k ;
+
+    while(t--){
+        int val = q.front() ;
+        q.pop() ;
+        q.push(val) ;
+    }
+
+    return q ;
+}
+
+
+
+
+//Q4. First non-repeating character in a stream
+string firstnonrepeating (string A){
+    unordered_map<char , int> count ;
+    queue<int> q ;
+    string ans = "" ;
+
+    for (int i=0 ; i<A.length() ; i++){
+        char ch = A[i] ;
+
+        //increase count
+        count[ch] ++ ;
+
+        //queue main push krdo
+        q.push(ch) ;
+
+        while(!q.empty()){
+            if(count[q.front()] > 1){
+                //repeating character
+                q.pop() ;
+            }
+            else{
+                //non rep. character mil gya
+                ans.push_back(q.front()) ;
+                break ;
+            }
+        }
+
+        if (q.empty()){
+            ans.push_back('#') ;
+        }
+    }
+
+    return ans ;
+}
+
+
+
+
+//Q5. Circular Tour
+int tour (petrolpumpp p , int n){
+
+    int deficit = 0 ;
+    int balance = 0 ;
+    int start = 0 ;
+
+    for (int i=0 ; i<n ; i++){
+        balance += p[i].petrol - p[i].distance ; 
+        if (balance < 0){
+            deficit += balance ;
+            start = i+1 ;
+            balance = 0 ;
+        }
+    }
+    
+    if (deficit + balance >= 0){
+        return start ;
+    }
+    else {
+        return -1 ;
+    }
+}
+
+
+
+
+//Q7. k queues in an array
+
+#include <iostream>
+using namespace std ;
+
+class kQueue {
+
+    public:
+    int n ;
+    int k ;
+    int *front ;
+    int *rear ;
+    int *arr ;
+    int freespot ;
+    int *next ;
+
+    public:
+    kQueue (int n , int k) {
+
+        this->n = k ;
+        this->k = k ;
+        front = new int[k] ;
+
+        for (int i=0 ; i<k ; i++){
+            front[i] = -1 ;
+        }
+
+        rear = new int[k] ;
+        next = new int[n] ;
+        arr = new int[n] ;
+        freespot = 0 ;
+    }
+};
+
+

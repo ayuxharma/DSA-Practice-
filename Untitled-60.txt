@@ -1,0 +1,294 @@
+//L55
+
+
+//Q1. Reverse a string using stack
+
+#include <iostream>
+#include <stack>
+using namespace std ;
+
+int main () {
+
+    string str = "ayush" ;
+    
+    stack <char> s ;
+
+    for (int i= 0 ; i<str.length() ; i++) {
+        char ch = str[i] ;
+        s.push(ch) ;
+    }
+
+    string ans = "" ; 
+
+    while (s.empty() != 1) {
+        char ch = s.top() ;
+        ans.push_back(ch) ;
+
+        s.pop() ;
+    }
+
+    cout << "ansewer is " << ans << endl;
+
+    return 0 ;
+}
+
+
+
+//Q2. Delete middle element from stack
+
+void solve (stack <int> &inputstack , int count , int size) {
+
+    //base case
+    if(count==(size/2)){
+        inputstack.pop();
+        return ;
+    }
+
+    int num = inputstack.top();
+    inputstack.pop() ;
+
+    //recursive call
+    solve (inputstack , count+1 , size) ;
+
+    inputstack.push(num) ;
+}
+
+
+void deletemiddle (stack <int> &inputstack , int n) {
+
+    int count = 0 ;
+    solve(inputstack , count , n) ;
+}
+
+
+//Q3. Valid parenthesis*
+
+bool isvalidparenthesis (string expression){
+
+    stack <char> s ;
+    
+    for (int i=0 ; i<expression.length() ; i++){
+
+        char ch = expression[i] ;
+
+        // if opening bracket , push in stack
+        // if closing bracket , stack top check and pop
+
+        if(ch== '('  ||  ch== '{'  ||  ch=='[') {
+            s.push(ch) ;
+        }
+        else {
+            if(s.empty() != 0){
+                char top = s.top() ;
+                if ( ( ch== '(' && top== ')' )    ||   ( ch== '{' && top=='}' )    ||   ( ch== '[' && top==']' )  ) {
+                    s.pop() ;
+                }
+                else {
+                    return false ;
+                }
+            }
+            else {
+                return false ;
+            }
+        }
+    }
+
+    if (s.empty()){
+        return true ;
+    }
+    else {
+        return false ;
+    }
+}
+
+
+//Q4.  Insert element at bottom of given stack
+
+void solve (stack <int>& s , int x){
+
+    //base case
+    if (s.empty()){
+        s.push(x) ;
+        return ;
+    }
+
+    int num = s.top() ;
+    s.pop() ;
+
+    //recursive call
+    solve(s,x) ;
+
+    s.push(num) ;
+}
+
+stack <int> pushatbottom (stack <int>& mystack , int x){
+
+    solve (mystack , x) ;
+    return mystack ;
+}
+
+
+
+
+//Q5. Reverse stack using recursion
+//TC= O(n^2) 
+
+void insertatbottom (stack <int> &s , int element) {
+
+     //base case
+    if (s.empty()){
+        s.push(x) ;
+        return ;
+    }
+
+    int num = s.top() ;
+    s.pop() ;
+
+    //recursive call
+    solve(s,x) ;
+
+    s.push(num) ;
+}
+ 
+
+void reversestack (stack <int> & stack) {
+    //base case
+    if (stack.empty()){
+        return ;
+    }
+
+    int num = stack.top() ;
+    stack.pop() ;
+
+    //recursive call
+    reversestack (s,element) ;
+
+    insertatbottom(num) ;
+
+}
+
+
+
+//Q6. Sort a stack 
+//TC= O(n^2)
+
+ 
+void sortedinsert(stack<int> &stack , int num){
+
+    //base case
+    if(stack.empty() || stack.top() < num){
+    
+    stack.push(num);
+    return ;
+    }
+
+    int n = stack.top() ;
+    stack.pop() ;
+
+    //recursive call
+    sortedstack (stack , num) ;
+
+    stack.push(num) ;
+}
+
+
+void sortstack (stack<int> &stack){
+
+    //base case
+    if(stack.empty()){
+        return ;
+    }
+
+    int num = stack.top() ;
+    stack.pop() ;
+
+    //recursive call
+    sortstack(stack) ;
+
+    sortedinsert(stack,num);
+}
+
+
+
+
+//Q7. Redundant bracket (TC= O(N) )
+bool findredundantbrackets (string &s){
+
+    stack <char> st ;
+    for (int i=0 ; i<s.length() ; i++) {
+
+        char ch = s[i] ;
+
+        if (ch== '('  ||  ch== '+'  ||  ch== '-'  ||  ch== '*'  ||  ch== '/'){
+            
+            st.push(ch) ;
+        }
+        else{
+            if( ch==')' ){
+
+                while (st.top() != '(' ){
+                    char top = st.top() ;
+
+                    if(top== '('  ||  top== '+'  ||  top== '-'  ||  top== '*'  ||  top== '/'){
+
+                        isredundent = false ;
+                    }
+                    
+                    st.pop() ;
+                }
+
+                if (isredundant == true){
+                    return true ;
+                }
+
+                st.pop() ;
+            }
+        }
+
+        return false ;
+    }
+}
+
+
+//Q8. minimum cost to make a string valid
+
+int findmincose (string str){
+
+    //odd condition
+    if(str.length()%2 == 1){
+        return -1 ;
+    }
+
+    //remove valid part
+    stack <char> s ;
+    for (int i=0 ; i<str.length() ; i++){
+        char ch = str[i] ;
+
+        if (ch=='(' ){
+            s.push(ch) ;
+        }
+        else{
+            // ch is closed brace
+            if(s.empty() == 0  &&  s.top()== '('  ){
+                s.pop() ;
+            }
+            else {
+                s.push(ch) ;
+            }
+        }
+    }
+    // stack contains invalid expression
+    int a = 0 , b = 0 ;
+    while(s.empty()==0 ){
+        if(s.top()== '(' ){
+            b++ ;
+        }
+        else {
+            a++ ;
+        }
+        s.pop()
+    }
+
+    int ans = (a+1)/2 + (b+1)/2 ;
+    return ans ;
+}

@@ -1,0 +1,111 @@
+//L42
+//(OOP's)
+
+#include <iostream>
+using namespace std ;
+
+class Hero {
+
+    //properties
+
+    private :
+    int Health ;
+
+    public :
+    char level ;
+
+    Hero() {
+        cout << "Constructor Called" << endl;
+    }
+
+    //parameterized constructor
+    Hero (int Health , char level) {
+       this-> Health = Health ; 
+       this-> level = level ;
+    } 
+
+    //copy constructor 
+    Hero(Hero& temp) {
+        this-> Health = temp.Health ;
+        this->level = temp.level ; 
+    } 
+
+    void print () {
+        cout << "Health " << this->Health << endl;
+        cout << "level " << this->level << endl; 
+     }
+
+    int getHealth() {
+        return Health ;
+    }
+
+    char getlevel() {
+        return level ;
+    }
+
+    void setHealth(int h) {
+        Health = h ;
+    }
+
+    void setlevel(char ch) {
+        level = ch ;
+    }
+
+    //destructor
+    ~Hero () {
+        cout << "Destructor called " << endl;
+    }
+
+};
+
+int main () {
+
+    Hero suresh(70 , 'C') ;
+    suresh.print ;
+
+    Hero ritesh (suresh) ;
+    ritesh.print ;
+
+   
+
+
+
+
+
+
+    // //object created statically
+    // cout << "hii" << endl;
+    // Hero ramesh(10) ; 
+    // cout << "hello" << endl;
+    // cout << "address of ramesh " << &ramesh << endl;
+    
+   
+
+
+
+    // //static allocation
+    // Hero a ;
+
+    // //dynamic allocation
+    // Hero *b = new Hero ;
+    // cout << "Level is " << (*b).level << endl;
+    // cout << "Health is " << (*b).getHealth() << endl;
+    // //OR
+    // cout << "Level is " << b->level << endl;
+    // cout << "Health is " << b->getHealth() << endl;
+
+
+
+
+    // // creation of object
+    // Hero ramesh;
+
+    // //cout << "size of object is " << sizeof(ramesh) << endl;
+    
+    // cout << "Health is " << ramesh.getHealth() << endl;
+    // cout << "Level is " << ramesh.level << endl;
+
+    // cout << sizeof(ramesh) << endl;
+
+    return 0;
+}

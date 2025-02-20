@@ -1,0 +1,110 @@
+//L24
+
+//Q. COUNT PRIMES
+
+bool isPrime(int n) {
+    if(n<=1)
+    return false;
+
+    for (int i=2 ; i<n ; i++) {
+        if (n%i==0) {
+            return false;
+        }
+    }
+    return true ;
+}
+
+int countPrimes(int n) {
+
+    int cnt = 0;
+    for (int i=2 ; i<n ; i++) {
+        if(isPrime(i)) {
+            cnt ++ ;
+        }
+        return cnt ;
+    }
+}
+// this method above has high complexity. It will show TLE. 
+
+int countPrimes (int n) {
+
+    int cnt =0;
+
+    //size is n+1 and true sabko initially
+    vector<bool>prime(n+1,true);
+
+    prime[0]=prime[1]=false;
+
+    for (int i=2 ; i<n ; i++) {
+
+        if (prime[i]) {
+            cnt++ ;
+
+            for (int j=2*i ; j<n ; j=j+i) {
+                prime[j]=0;
+            }
+        }
+    }
+    return cnt ;
+}
+
+
+
+
+//gcd 
+
+#include <iostream>
+using namespace std ;
+
+int gcd (int a , int b) {
+
+    if (a==0) {
+        return b;
+    }
+
+    while (a != b) {
+
+        if (a>b) {
+
+            a = a-b ;
+        }
+        else {
+            b = b-a ;
+        }
+    }
+    return a ;
+}
+
+int main () {
+
+    int a,b ;
+    cout << "Enter the values of a and b " << endl;
+    cin >> a >> b ;
+
+    int ans = gcd(a,b) ;
+
+    cout << "The gcd of a and b is " << ans << endl;
+
+    return 0;
+
+}
+
+
+//Q. MODULAR EXPONENTIATION
+
+int modularExponentiation ( int x , int n , int m) {
+
+    int res = 1 ;
+
+    while (n>0) {
+        if (n&1) {
+            //odd
+            res = ( 1LL*(res)  *  (x)%m) %m ;
+        }
+        x = ( 1LL*(x)%m * (x)%m)%m ;
+        n = n >> 1 ; /* divide by 2 kiya h*/
+    }
+    return res ;
+}
+
+//1LL means long long se typecast kiya h taaki int ki limit k bahar control ho jae 

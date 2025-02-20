@@ -1,0 +1,154 @@
+//L5 and L7
+
+//BITWISE OPERATORS
+#include <iostream>
+using namespace std;
+
+int main () {
+   /* int a = 4;
+    int b = 6;
+
+    cout << " a&b " << (a&b) << endl;
+    cout << " a|b " << (a|b) << endl;
+    cout << " ~a " << (~a) << endl;
+    cout << " a^b " << (a^b) << endl;
+    */
+
+
+// FOR LOOP
+
+//counting 
+/* int n ;
+cin >> n ;
+ for (int i=1; i<=n; i++) {
+    cout << i << " " << endl;
+ } */
+
+
+ // sum 
+/* int n;
+ cout << "Enter the value of n" << endl;
+ cin >> n;
+
+ int sum = 0 ;
+ for (int i=1; i<=n; i++) {
+    sum = sum + i ;
+ }
+ cout << sum ;
+*/
+
+ // FIBONACCI SERIES (pehle 2 ka sum is next number)  (0,1,1,2,3,5,8,13,21........)
+  /* int n = 10;
+
+   int a = 0;
+   int b = 1;
+
+   for (int i=1; i<=n; i++) {
+    int nextnumber = a+b ;
+    cout << nextnumber << " " ;
+    a=b;
+    b=nextnumber;
+   }
+    */
+
+//PRIME OR NOT
+  /* int n;
+   cout << " Enter the value of n " << endl;
+   cin >> n;
+
+   bool isprime = 1;
+
+   for (int i=2; i<n; i++) {
+    if (n%i==0){
+        isprime = 0;
+        break;
+    }
+ }
+
+ if (isprime==0) {
+    cout << "Not prime " << endl;
+ }
+else {
+    cout << "Prime number " << endl;
+} */
+
+
+
+//CONTINUE (to skip a particular iteration, mtlb continue k niche vala part is unreachable)
+
+// OPERATOR PRECEDENCE (use brackets)
+
+
+//LEETCODE QUESTIONS
+//Q1
+/* int n;
+cin >> n;
+int product = 1 ;
+int sum = 0;
+while (n!=0) {
+    int digit = n%10 ;
+    product = product * digit ;
+    sum = sum + digit ;
+
+    n = n/10 ;
+}
+int answer = product - sum ;
+cout << answer ;
+return answer;
+*/
+
+
+
+//Q2 
+/*int n ;
+cin >> n ;
+int count = 0 ;
+while (n!=0) {
+    //checking last bit 
+    if (n&1==1) {
+        count++ ;
+    }
+       n >> 1 ;
+    
+}
+cout << count ;
+return count ;
+*/
+
+
+//Q3
+/*int n;
+cin >> n;
+int intmax = (2^31)-1 ;
+int intmin = (-2^31) ;
+int ans=0;
+while (n!=0) {
+    int digit = n%10 ;
+    ans = (ans*10) + digit ;
+    if ((ans > intmax/10) || (ans < intmin/10)) {
+        return 0;
+    }
+    n = n/10 ;
+}
+cout << ans ;
+return ans ;
+*/
+
+
+//Q4
+int n;
+int m = n ;
+cin >> n;
+int mask = 0;
+//edge case
+if (n==0) {
+    return 1;
+}
+while (m!=0) {
+    mask = (mask << 1) | 1 ;
+    n = m >> 1 ;
+}
+int ans = (~n) & mask ;
+cout << ans ;
+return ans;
+}

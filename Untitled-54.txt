@@ -1,0 +1,132 @@
+//L49
+
+//Q1. APPROACH 1
+node* sortlist(node* head){
+
+    int zerocount = 0;
+    int onecount = 0;
+    int twocount = 0;
+
+    node*temp = head ;
+    while(temp != NULL){
+        if(temp->data == 0){
+            zerocount++ ;
+        }
+        else if (temp->data == 1){
+            onecount++ ;
+        }
+        else if (temp->data == 2){
+            twocount++ ;
+        }
+        temp = temp->next ;
+    }
+    
+    temp = head ;
+    while(temp != NULL){
+        if (zerocount != 0){
+            temp->data = 0;
+            zerocount-- ;
+        }
+        else if (onecount != 0){
+            temp->data = 1;
+            onecount-- ;
+        }
+        else if (twocount != 0){
+            temp->data = 2;
+            twocount-- ;
+        }
+        temp = temp->next ;
+    }
+
+    return head ;
+}
+
+//Q1. APPROACH 2
+
+void insertattail(node* &tail , node* curr){
+
+    tail->next = curr ;
+    tail = curr ;
+}
+
+node* sortlist (node* head){
+
+    node* zerohead = new node(-1);
+    node* zerotail = zerohead ;
+    node* onehead = new node(-1) ;
+    node* onetail = onehead ;
+    node* twohead = new node(-1) ;
+    node* twotail = twohead ;
+
+    node* curr = head ;
+
+    //creat separate list for 0 ,1 ,2
+    while(curr != head) {
+
+        int value = curr->data ;
+
+        if(value==0){
+            insertattail(zerotail,curr);
+        }
+        else if (value==1){
+            insertattail(onetail,curr);
+        }
+        else if (value==2){
+            insertattail(twotail,curr);
+        }
+        curr = curr->next ;
+    }
+}
+
+//merge the 3 lists  
+
+if(onelist->next != NULL){//1s list is not empty
+    zerotail->next = onehead->next ;
+}
+else { // 1s list is empty
+    zerotail->next = twohead->next ;
+}
+
+onetail->next = twohead->next ;
+twotail->next = NULL ;
+
+//setup head
+head = zerohead->next;
+
+//delete dummy nodes
+delete zerohead ;
+delete onehead ;
+delete twohead ;
+
+
+return head ; 
+
+
+
+
+//Q2. (incomplete .... see video of 10 mins... and solve Q1 before coming to this)
+
+void solve(node<int>* first , node<int>* second){
+
+    node* curr1 = first ;
+    node* next1 = curr->next ;
+    node* curr2 = second ;
+
+    while(next1 != NULL  &&  curr2 != NULL){
+
+        if((curr->data >= curr1->data)  &&  (curr2->data <= next1->data)){
+
+        }
+    }
+}
+
+node<int>* sorttwolists(node<int>* first , node<int>* second){
+
+    if(first==NULL){
+        return second ;
+    }
+    if (second==NULL){
+        return first ;
+    }
+}
+

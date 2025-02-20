@@ -1,0 +1,73 @@
+//57
+
+//Q1. Celebrity problem
+
+bool knows(vector<vector<int>>&M , int a , int b){
+
+    if(M[a][b])==1
+    return true ;
+
+    else 
+    return false ;
+}
+
+int celebrity (vector<vector<int>>&M , int n){
+
+    stack<int> s;
+
+    //s1: push all elements in stack
+    for (int i=0 ; i<n ; i++){
+        s.push(i) ;
+    }
+
+    //s2: get two elements and compare them
+    while(s.size() > 1){
+
+        int a = s.top() ;
+        s.pop() ;
+
+        int b = s.top() ;
+        s.pop() ; 
+
+
+        if (knows(a,b)) {
+            s.push(b) ;
+        }
+        else {
+            s.push(a) ;
+        }
+    }
+    
+    //s3: single element in stack is potential celebrity, so verify it
+
+    int ans = s.top() ;
+
+    bool rowcheck = false ;
+
+    int zerocount = 0 ;
+    for (int i=0 ; i<n ; i++) {
+        if(M[ans][i] == 0 ){
+            zerocount++ ;
+        }
+    }
+    //all zeroes
+    if (zerocount != n){
+        return -1 ;
+    }
+
+
+    //column check
+    int onecount = 0 ;
+
+    for (int i=0 ; i<n ; i++){
+        if(M[i][ans]==1){
+            onecount++ ;
+        }
+    }
+    if (onecount != n-1 /*diagonal vala hata diya*/){
+        return -1 ;
+    }
+
+    return ans ;
+
+} 
